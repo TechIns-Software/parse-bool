@@ -20,7 +20,6 @@ jobs:
           echo "version=$version" >> "$GITHUB_ENV"
 
       - name: Create Tag
-        if: startsWith(env.version, 'v')
         run: |
           git tag -a "$version" -m "Release $version"
           git push origin "$version"
