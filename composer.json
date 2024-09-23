@@ -1,0 +1,18 @@
+{
+    "name": "techins/parse-bool",
+    "description": "Convert A string Value Into Boolean",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Techins\\ParseBool\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TechIns"
+        }
+    ],
+    "require": {}
+}

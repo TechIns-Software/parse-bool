@@ -1,0 +1,29 @@
+name: Tag on Push
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get version from composer.json
+        id: get_version
+        run: |
+          version=$(jq -r '.version' composer.json)
+          echo "version=$version" >> $GITHUB_ENV
+
+      - name: Create Tag
+        if: startsWith(env.version, 'v')
+        run: |
+          git tag -a "$version" -m "Release $version"
+          git push origin "$version"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
